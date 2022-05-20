@@ -3,7 +3,6 @@ import { items, links } from "./data";
 import Navbar from "./Navbar";
 import { products } from "./data";
 import "./App.css";
-import "./fontawesome-free-5.15.4-web/css/all.min.css";
 import Items from "./Items";
 import { ACTIONS } from "./Store/action";
 import { useState } from "react";
