@@ -4,7 +4,7 @@ import { BsFillCartFill } from "react-icons/bs";
 import "./App.css";
 import Login from "./Authentication/Login";
 import { links } from "./data";
-import { BrowserRouter as Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getUserData } from "./config";
 import { connect } from "react-redux";
