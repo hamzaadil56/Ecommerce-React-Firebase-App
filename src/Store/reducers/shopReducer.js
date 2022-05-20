@@ -1,6 +1,3 @@
-import _default from "atob";
-import { act } from "react-dom/cjs/react-dom-test-utils.production.min";
-import { unstable_renderSubtreeIntoContainer } from "react-dom/cjs/react-dom.development";
 import { products } from "../../data";
 import { ACTIONS } from "../action";
 const allCategories = [
@@ -96,6 +93,7 @@ const shopReducer = (state = initial_state, action) => {
           return 1;
         }
       }
+      return 0;
     });
 
     console.log(sortedItems, "sortedItems");
@@ -113,7 +111,7 @@ const shopReducer = (state = initial_state, action) => {
     };
   }
   if (action.type === ACTIONS.ADD_TO_CART) {
-    let insideCart = state.shopItems.filter((item, number) => {
+    let insideCart = state.shopItems.filter((item) => {
       return item.id === action.payload;
     });
     let newCartItems = state.cartItems.concat(insideCart);
@@ -196,6 +194,7 @@ const shopReducer = (state = initial_state, action) => {
       if (item.title.toLowerCase().includes(action.payload.toLowerCase())) {
         return item;
       }
+      return 0;
     });
     return {
       ...state,
@@ -207,13 +206,11 @@ const shopReducer = (state = initial_state, action) => {
       ...state,
       isAuthenticated: true,
       currentUser: action.payload,
-
     };
   }
   if (action.type === ACTIONS.SET_USERS) {
     return {
       ...state,
-
     };
   } else {
     return state;

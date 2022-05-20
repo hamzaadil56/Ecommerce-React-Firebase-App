@@ -2,14 +2,7 @@
 import { ACTIONS } from "./Store/action";
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import {
-  getDatabase,
-  ref,
-  set,
-  onValue,
-  onChildAdded,
-} from "firebase/database";
-import { useSelector } from "react-redux";
+import { getDatabase, ref, set, onChildAdded } from "firebase/database";
 
 const firebaseConfig = {
   apiKey: "AIzaSyD4eCNKJx5FnUqaw3-9MkTqc5GNnLBY8qc",
@@ -32,10 +25,6 @@ const googleLogin = () => {
     console.log(dispatch, "dispatch");
     signInWithPopup(auth, provider)
       .then((result) => {
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
-        // The signed-in user info.
         const user = result.user;
         let user_data = {
           username: user.displayName,
@@ -51,18 +40,14 @@ const googleLogin = () => {
           uid: user.uid,
         });
         console.log(user_data);
-      dispatch({ type: ACTIONS.AUTHENTICATION, payload:user_data });
-
+        dispatch({ type: ACTIONS.AUTHENTICATION, payload: user_data });
       })
       .catch((error) => {
         // Handle Errors here.
-        const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorMessage);
         // The email of the user's account used.
-        const email = error.email;
         // The AuthCredential type that was used.
-        const credential = GoogleAuthProvider.credentialFromError(error);
         // ...
       });
   };
@@ -73,8 +58,7 @@ const getUserData = () => {
     const usersRef = ref(db, "users/");
     onChildAdded(usersRef, (data) => {
       console.log(data.val(), "user-details");
-      dispatch({type:ACTIONS.GET_USER_DETAILS,payload:data.val()})
-
+      dispatch({ type: ACTIONS.GET_USER_DETAILS, payload: data.val() });
     });
   };
 };
@@ -84,7 +68,7 @@ const getOrderDetails = () => {
     const usersRef = ref(db, "users/");
     onChildAdded(usersRef, (data) => {
       console.log(data.val(), "order_details");
-      dispatch({type:ACTIONS.GET_ORDER_DETAILS,payload:data.val()})
+      dispatch({ type: ACTIONS.GET_ORDER_DETAILS, payload: data.val() });
     });
   };
 };

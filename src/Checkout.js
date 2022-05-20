@@ -1,13 +1,7 @@
 import React from "react";
 import Navbar from "./Navbar";
 import { useSelector } from "react-redux";
-import {
-  getDatabase,
-  ref,
-  set,
-  onValue,
-  onChildAdded,
-} from "firebase/database";
+import { getDatabase, ref, set } from "firebase/database";
 import { useEffect } from "react";
 import { getOrderDetails } from "./config";
 import { connect } from "react-redux";
@@ -25,7 +19,7 @@ const Checkout = (props) => {
 
   useEffect(() => {
     props.getOrderDetails();
-  }, []);
+  }, [props]);
 
   return (
     <div>
@@ -49,13 +43,14 @@ const Checkout = (props) => {
               {state.cartItems.map((item, index) => {
                 return (
                   <tr key={index}>
-                    <td scope="row">{index}</td>
+                    <td>{index}</td>
                     <td>{item.title}</td>
                     <td>
                       <img
                         className="profile-pic"
                         width="50px"
                         src={item.image}
+                        alt={item.title}
                       />
                     </td>
                     <td>{item.piece}</td>

@@ -1,5 +1,4 @@
 import React from "react";
-import { items, links } from "./data";
 import Navbar from "./Navbar";
 import { products } from "./data";
 import "./App.css";

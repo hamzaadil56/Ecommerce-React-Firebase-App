@@ -1,7 +1,6 @@
 import React from "react";
 import { ACTIONS } from "./Store/action";
-import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 
 const Item = ({ id, price, title, image, piece, item }) => {
   const dispatch = useDispatch();

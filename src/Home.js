@@ -59,7 +59,11 @@ const Home = () => {
             return (
               <div key={index} className="card ">
                 <div className="overlay"></div>
-                <img src={item.image} className="card-img-top" />
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="card-img-top"
+                />
                 <div className="card-body">
                   <h4>{item.title}</h4>
                   <p className="card-text">{item.price}</p>

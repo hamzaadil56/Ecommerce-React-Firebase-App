@@ -1,11 +1,11 @@
 import React from "react";
 import { ACTIONS } from "./Store/action";
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Item from "./CartItem";
 import Login from "./Authentication/Login";
 import { useHistory } from "react-router-dom";
-const Items = ({ products, colorItems, filterButton }) => {
+const Items = ({ products, filterButton }) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const state = useSelector((state) => state.shop);
@@ -15,15 +15,15 @@ const Items = ({ products, colorItems, filterButton }) => {
   };
   useEffect(() => {
     dispatch({ type: ACTIONS.GET_TOTAL_ITEMS });
-  }, [state.cartItems]);
+  }, [state.cartItems, dispatch]);
 
   return (
     <div>
       <article>
-        <p>
+        <h3>
           {products.length} products found
           <hr />
-        </p>
+        </h3>
         <button
           onClick={() => filterButton()}
           className="btn filter-dropdown btn-primary"
@@ -70,7 +70,11 @@ const Items = ({ products, colorItems, filterButton }) => {
             className="sort-input"
           >
             {" "}
-            <option value="" disabled selected>
+            <option
+              value=""
+              disabled
+              defaultValue={{ value: "", label: "Sort By" }}
+            >
               Sort By
             </option>
             <option value="lowest">price (lowest)</option>
@@ -85,7 +89,11 @@ const Items = ({ products, colorItems, filterButton }) => {
           products.map((item, index) => {
             return (
               <div key={index} className="card ">
-                <img src={item.image} className="card-img-top" />
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="card-img-top"
+                />
                 <div className="card-body">
                   <h4>{item.title}</h4>
                   <p className="card-text">Price:{item.price} Rs</p>

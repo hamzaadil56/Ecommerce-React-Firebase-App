@@ -17,7 +17,7 @@ const Crousel = () => {
                 key={index}
                 className={`carousel-item ${index === i ? "active" : ""}`}
               >
-                <img src={image} className="d-block w-100" />
+                <img src={image} className="d-block w-100" alt={index} />
               </div>
             );
           })}

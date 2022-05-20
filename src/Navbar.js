@@ -4,7 +4,7 @@ import { BsFillCartFill } from "react-icons/bs";
 import "./App.css";
 import Login from "./Authentication/Login";
 import { links } from "./data";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getUserData } from "./config";
 import { connect } from "react-redux";
@@ -13,7 +13,7 @@ import { useEffect } from "react";
 const Navbar = (props) => {
   useEffect(() => {
     props.getUserData();
-  }, []);
+  }, [props]);
   function capitalize(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
@@ -22,7 +22,7 @@ const Navbar = (props) => {
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark ">
         <div className="navbar-container container-fluid">
-          <a className="navbar-brand" href="#">
+          <a className="navbar-brand" href="/">
             FashionVilla
           </a>
           <button
